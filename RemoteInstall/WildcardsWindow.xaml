@@ -1,0 +1,41 @@
+﻿<Controls:MetroWindow x:Class="RemoteInstall.WildcardsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:RemoteInstall"
+        mc:Ignorable="d"
+        Title="Wildcards" Height="450" Width="255">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding Path=List}" Grid.Row="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" Width="125"/>
+                    <GridViewColumn Header="Value" Width="125">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" IsCancel="True" Click="CancelClick">Cancel</Button>
+            <Button Grid.Column="1" Click="OKClick">OK</Button>
+        </Grid>
+        <Controls:ProgressRing Foreground="{DynamicResource AccentColorBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Progress" IsActive="False"/>
+    </Grid>
+</Controls:MetroWindow>
